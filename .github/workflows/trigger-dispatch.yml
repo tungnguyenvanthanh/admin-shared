@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main  # hoặc branch chính của Cậu
+  workflow_dispatch:
 
 jobs:
   trigger:
