@@ -1,0 +1,20 @@
+name: Dispatch update to sub repos
+
+on:
+  push:
+    branches:
+      - main  # hoặc branch chính của Cậu
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger update in sub repos
+        run: |
+          repos=("admin.xaydungmiendong.vn" "admin.ttvl.io.vn")
+          for repo in "${repos[@]}"; do
+            curl -X POST https://api.github.com/repos/tungnguyenvanthanh/$repo/dispatches \
+              -H "Accept: application/vnd.github+json" \
+              -H "Authorization: token ${{ secrets.PAT_GITHUB_DISPATCH }}" \
+              -d '{"event_type":"update-submodule"}'
+          done
