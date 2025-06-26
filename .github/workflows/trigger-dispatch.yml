@@ -3,7 +3,7 @@ name: Dispatch update to sub repos
 on:
   push:
     branches:
-      - main  # hoặc branch chính của Cậu
+      - main  # hoặc branch chính
   workflow_dispatch:
 
 jobs:
@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Trigger update in sub repos
         run: |
-          repos=("admin.xaydungmiendong.vn" "admin.ttvl.io.vn")
+          repos=("admin.xaydungmiendong.vn" "admin.ttvl.io.vn" "dashboard.ttvl.io.vn")
           for repo in "${repos[@]}"; do
             curl -X POST https://api.github.com/repos/tungnguyenvanthanh/$repo/dispatches \
               -H "Accept: application/vnd.github+json" \
